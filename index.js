@@ -16,12 +16,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 let oauth2 = defaultClient.authentications['oauth2'];
-oauth2.accessToken = process.env.ACCESS_TOKEN;
+oauth2.accessToken = "EAAAELfmBCo-0DYKHiwC3cTBlyhmXCndQ6QYJfg7UHuGdKxFWpu4MIZagzVGTdN9";
 
 // Use API_BASE_PATH to switch between sandbox env and production env
 // sandbox: https://connect.squareupsandbox.com
 // production: https://connect.squareup.com
-defaultClient.basePath = process.env.API_BASE_PATH;
+defaultClient.basePath = "https://connect.squareupsandbox.com";
 
 const paymentsApi = new PaymentsApi();
 const ordersApi = new OrdersApi();
