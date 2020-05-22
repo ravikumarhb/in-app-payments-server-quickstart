@@ -31,6 +31,8 @@ const customersApi = new CustomersApi();
 app.post('/chargeForCookie', async (request, response) => {
   const requestBody = request.body;
   const createOrderRequest = getOrderRequest(requestBody.totalAmount);
+      console.log('amount from app' + requestBody.totalAmount);
+
 
   try {
     const locations = await locationsApi.listLocations();
@@ -115,6 +117,7 @@ app.post('/createCustomerCard', async (request, response) => {
 });
 
 function getOrderRequest(totalAmount) {
+  console.log('amount to make request ' + totalAmount);
   return {
     idempotency_key: crypto.randomBytes(12).toString('hex'),
     order: {
