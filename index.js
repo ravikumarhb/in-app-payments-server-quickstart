@@ -30,7 +30,7 @@ const customersApi = new CustomersApi();
 
 app.post('/chargeForCookie', async (request, response) => {
   const requestBody = request.body;
-  const createOrderRequest = getOrderRequest();
+  const createOrderRequest = getOrderRequest(requestBody.totalAmount);
 
   try {
     const locations = await locationsApi.listLocations();
@@ -114,7 +114,7 @@ app.post('/createCustomerCard', async (request, response) => {
   }
 });
 
-function getOrderRequest() {
+function getOrderRequest(totalAmount) {
   return {
     idempotency_key: crypto.randomBytes(12).toString('hex'),
     order: {
@@ -123,7 +123,7 @@ function getOrderRequest() {
           name: "Cookie 🍪",
           quantity: "1",
           base_price_money: {
-            amount: 100,
+            amount: totalAmount,
             currency: "GBP"
           }
         }
